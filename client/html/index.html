@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сокращение ссылок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+
+            transform: translateY(-1px);
+        }
+
+        .blue {
+            background-color: #007bff;
+        }
+        .active {
+            background-color: green;
+            color: white;
+        }
+
+        .inactive {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Сокращение ссылок</h2>
+        <input type="text" id="originalUrl" placeholder="Введите оригинальную ссылку">
+        <button class="blue" onclick="shortenUrl()">Сократить ссылку</button>
+        <p id="shortenedUrl"></p>
+        <button class="blue" onclick="requestReport()">Генерировать отчёт</button>
+        <p></p>
+        <div>
+            <button id="URL" class="inactive" onclick="toggleDetail('URL')">URL</button>
+            <button id="SourceIP" class="inactive" onclick="toggleDetail('SourceIP')">SourceIP</button>
+            <button id="TimeInterval" class="inactive" onclick="toggleDetail('TimeInterval')">TimeInterval</button>
+        </div>
+    </div>
+        <script>
+        let selectedDetails = ["URL"];
+
+        function toggleDetail(detail) {
+            const index = selectedDetails.indexOf(detail);
+
+            if (index === -1) {
+                selectedDetails.push(detail);
+            } else {
+                selectedDetails.splice(index, 1);
+            }
+
+            updateButtonStyles();
+        }
+
+        function updateButtonStyles() {
+            const buttons = document.querySelectorAll("div button[id]");
+            const dimensions = [];
+
+            buttons.forEach(button => {
+                const detail = button.id;
+
+                if (selectedDetails.includes(detail)) {
+                    button.classList.add("active");
+                    button.classList.remove("inactive");
+                    dimensions.push(detail);
+                } else {
+                    button.classList.add("inactive");
+                    button.classList.remove("active");
+                }
+            });
+
+            return dimensions
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../index.js"></script>
+</body>
+</html>
