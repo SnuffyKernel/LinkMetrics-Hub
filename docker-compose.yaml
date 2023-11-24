@@ -1,20 +1,23 @@
 services:
   url_short_service:
-    image: url_short_service
+    build:
+      context: ./urlShortService
     ports:
       - "3000:3000"
     networks:
       - mynetwork
 
   stats_service:
-    image: stats_service
+    build:
+      context: ./statsService
     ports:
       - "4000:4000"
     networks:
       - mynetwork
 
   database:
-    image: database
+    build:
+      context: ./database_GO
     ports:
       - "6789:6789"
     networks:
