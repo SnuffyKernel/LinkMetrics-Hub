@@ -3,7 +3,7 @@ const net = require("net");
 class DataBase {
   constructor() {
     this.PORT = 6789;
-    this.HOST = "localhost";
+    this.HOST = "database"; // for docker
   }
 
   sendRequest(request, onResponse) {
