@@ -1,0 +1,25 @@
+services:
+  url_short_service:
+    image: url_short_service
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+  stats_service:
+    image: stats_service
+    ports:
+      - "4000:4000"
+    networks:
+      - mynetwork
+
+  database:
+    image: database
+    ports:
+      - "6789:6789"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
