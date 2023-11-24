@@ -28,29 +28,10 @@ async function shortenUrl() {
 async function visitShortenedLink(shortenedUrl) {
   try {
     window.open(`http://${ip}:${portURL}/${shortenedUrl}`, "_blank");
-
-    await sendStat(shortenedUrl);
   } catch (error) {
     console.error("Ошибка:", error);
   }
 }
-
-// async function sendStat(shortUrl) {
-//   const timestamp = new Date().toISOString();
-//   try {
-//     await axios.post(
-//       `http://${ip}:${port}/stats`,
-//       { shortUrl, timestamp },
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-//   } catch (error) {
-//     console.error("Ошибка при отправке статистики:", error);
-//   }
-// }
 
 async function requestReport() {
   const dimensions = updateButtonStyles();
