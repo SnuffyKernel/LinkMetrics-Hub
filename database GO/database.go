@@ -97,7 +97,7 @@ func (db *DataBase) addStat(ip, shortUrl string, timestamp time.Time) {
 				timeDifference := timestamp.Sub(entryTime)
 				minutesDifference := timeDifference.Minutes()
 
-				if statEntry.URL == shortUrl && minutesDifference < 1 {
+				if statEntry.URL == shortUrl && minutesDifference >= 0 && minutesDifference < 1 {
 					existingEntry = statEntry
 					break
 				}
